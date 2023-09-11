@@ -10,6 +10,8 @@ at the second position and find all elements with 'th' within the table,
 excluding the last two before stripping them of white space.
 """
 soup = BeautifulSoup(page.text, features='html.parser')
+for tag in soup.find_all(class_="reference"):
+    tag.decompose()
 table = soup.find_all('table')[1]
 world_titles = table.find_all('th')[:-2]
 world_table_titles = [title.text.strip() for title in world_titles]
